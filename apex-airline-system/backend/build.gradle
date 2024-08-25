@@ -2,10 +2,42 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.2'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id "jacoco"
+	id "org.sonarqube" version "5.0.0.4638"
 }
+
 
 group = 'com.apex'
 version = '0.0.1-SNAPSHOT'
+
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+test {
+    useJUnitPlatform() // Or other testing framework
+    // finalizedBy jacocoTestReport
+}
+
+// jacocoTestReport {
+//     reports {
+//         xml.required = true
+//         xml.destination = file("${buildDir}/reports/jacoco/coverage.xml")
+//     }
+// }
+
+sonar {
+    properties {
+        property 'sonar.projectKey', 'jp1593_spectra-systems_c173bdfd-beff-4caf-97cf-85378b44707c'
+        property 'sonar.projectName', 'spectra-systems'
+        property 'sonar.host.url', 'http://localhost:9000' 
+        property 'sonar.token', 'sqp_081ee3c00b1d9d056b78913997f9ad907d540f36' 
+        property 'sonar.java.coveragePlugin', 'jacoco'
+        property "sonar.coverage.jacoco.xmlReportPath", "${buildDir}/reports/jacoco.xml"
+    }
+}
+
 
 java {
 	sourceCompatibility = '21'
@@ -28,6 +60,8 @@ dependencies {
 	testImplementation 'org.mockito:mockito-core:3.+'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
+// tasks.named('test') {
+// 	useJUnitPlatform()
+// 	finalizedBy jacocoTestReport
+
+// }

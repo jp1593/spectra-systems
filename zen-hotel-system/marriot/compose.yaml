@@ -7,15 +7,16 @@
 # You can add other services your application may depend on here, such as a
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
+
 services:
   marriot-system:
     build:
       context: ../frontend
       args:
-        MONGODB_URI:
-        JWT_SECRET:
-        DB_NAME:
-        EMAIL_CREDENTIALS:
+        MONGODB_URI: mongodb+srv://admin:admin@marriot-db.0ha5ya6.mongodb.net/?retryWrites=true&w=majority&appName=marriot-db
+        JWT_SECRET: 111233872c41eb294ae744451677ae79dba5fc359468637acf619fefc1f81d7b3424b7ec86c86c58d851e49ba38bc558b4c844e9955eaae636c6651c0c051471
+        DB_NAME: marriot-db
+        EMAIL_CREDENTIALS: 6Wcn529ZkXZZwo0E
     ports:
       - 3000:3000
   marriot-services:
