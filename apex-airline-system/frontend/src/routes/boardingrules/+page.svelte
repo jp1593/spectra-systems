@@ -7,7 +7,7 @@
     <div class="w-full mx-auto bg-white rounded-lg shadow-md overflow-hidden">
       <div class="p-4 sm:p-6">
         <div class="items-center text-center justify-between">
-          <h2 class="text-2xl font-semibold">Boarding Rules</h2>
+          <h2 class="text-2xl font-semibold">Boarding Rules!</h2>
         </div>
         <hr class="my-4" />
         <div class="text-center">
