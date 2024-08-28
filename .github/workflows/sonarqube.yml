@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 21
-          distribution: 'temurin' # Correct distribution name
+          distribution: 'temurin'
       - name: Cache SonarQube packages
         uses: actions/cache@v1
         with:
@@ -33,7 +33,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('apex-airline-system/backend/**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
       - name: Make gradlew executable
-        run: chmod +x ./apex-airline-system/backend/gradlew
+        run: chmod +x gradlew
         working-directory: apex-airline-system/backend
       - name: Build and analyze
         env:
