@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  pull-requests: write # allows SonarQube to decorate PRs with analysis results
+  pull-requests: write # Allows SonarQube to decorate PRs with analysis results
 
 jobs:
   Analysis:
