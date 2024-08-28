@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 21
-          distribution: 'adoptopenjdk' # or another distribution like 'temurin', 'zulu', etc.
+          distribution: 'temurin' # Correct distribution name
       - name: Cache SonarQube packages
         uses: actions/cache@v1
         with:
