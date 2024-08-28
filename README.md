@@ -1,1 +1,1 @@
-Origin established as name
+Removal of origin condition. 
