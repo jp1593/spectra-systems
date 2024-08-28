@@ -17,8 +17,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'adoptopenjdk'  # You can use 'adoptopenjdk', 'zulu', or 'temurin'
-
+          distribution: 'temurin'  # Updated distribution
+          
       - name: Checkout code
         uses: actions/checkout@v3
 
