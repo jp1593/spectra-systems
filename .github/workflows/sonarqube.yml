@@ -1,9 +1,10 @@
-name: Build
+name: Sonarqube Scan
 on:
-  push:
+ pull_request:
     branches:
       - main # the name of your main branch
-  pull_request:
+      - dev
+      - uat
     types: [opened, synchronize, reopened]
 permissions:
   pull-requests: write # allows SonarQube to decorate PRs with analysis results
