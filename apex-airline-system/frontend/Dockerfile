@@ -21,8 +21,9 @@ COPY . .
 
 # Download dependencies as a separate step to take adv antage of Docker's caching.
 # Leverage a cache mount to /root/.npm to speed up subsequent builds.
-RUN --mount=type=cache,target=/root/.npm \
-    npm ci
+#RUN --mount=type=cache,target=/root/.npm \
+ #   npm ci
+RUN npm install
 RUN npm run build
 
 # Expose the port that the application listens on.
