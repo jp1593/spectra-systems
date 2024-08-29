@@ -278,8 +278,8 @@ public class ApexController {
                }
 
 
-            record User(String name, String email) {
-            }
+         { record User(String name, String email) {
+            }}
 
             if (result.next()) {
                 return new User(result.getString("first_name"), result.getString("email"));
