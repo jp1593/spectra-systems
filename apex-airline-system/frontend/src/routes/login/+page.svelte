@@ -29,7 +29,7 @@
     >
       <div class="flex flex-col">
         <div class="flex items-center">
-          <div class="font-bold text-xl">Log In</div>
+          <div class="font-bold text-xl">Log In Gratia Plena - 29 agosto 2024 - Magic - UAT </div>
           <Loader2
             class="shrink-0 ml-3 h-4 w-4 animate-spin {!loading && 'hidden'}"
           />
