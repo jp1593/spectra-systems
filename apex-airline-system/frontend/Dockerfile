@@ -6,26 +6,33 @@
 ARG NODE_VERSION=lts
 
 # Base Image
-FROM node:21.7.2
+FROM node:${NODE_VERSION}
 
 WORKDIR /usr/src/app
 
-ARG PUBLIC_BASE_URL
-ENV PUBLIC_BASE_URL=${PUBLIC_BASE_URL}
+ARG MONGODB_URI
+ENV MONGODB_URI=${MONGODB_URI}
 
 ARG JWT_SECRET
 ENV JWT_SECRET=${JWT_SECRET}
+
+ARG DB_NAME
+ENV DB_NAME=${DB_NAME}
+
+ARG EMAIL_CREDENTIALS
+ENV EMAIL_CREDENTIALS=${EMAIL_CREDENTIALS}
 
 # Copy the rest of the source files into the image.
 COPY . .
 
 # Download dependencies as a separate step to take adv antage of Docker's caching.
 # Leverage a cache mount to /root/.npm to speed up subsequent builds.
-RUN npm install
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci
 RUN npm run build
 
 # Expose the port that the application listens on.
 EXPOSE 3000
 
 # Run the application.
-CMD npm run preview
+CMD npm run start
