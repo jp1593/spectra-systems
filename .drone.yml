@@ -32,8 +32,7 @@ steps:
       from_secret: API_TOKEN
   commands:
   - >
-    curl -X POST \
-    https://api.mailersend.com/v1/email \
+    curl -X POST https://api.mailersend.com/v1/email \
     -H 'Content-Type: application/json' \
     -H 'X-Requested-With: XMLHttpRequest' \
     -H 'Authorization: Bearer $API_TOKEN' \
