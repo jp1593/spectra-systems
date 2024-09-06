@@ -45,9 +45,17 @@ steps:
                 "email": "mamarroquina@unis.edu.gt"
             }
         ],
-        "subject": "Drone build ${DRONE_BUILD_NUMBER} has failed!",
-        "text": "Drone build ${DRONE_BUILD_NUMBER} has failed.",
-        "html": "Drone build ${DRONE_BUILD_NUMBER} has failed."
+        "subject": "Build Failure in ${DRONE_REPO_NAME} (Build #${DRONE_BUILD_NUMBER})",
+        "text": "Unfortunately, the build #${DRONE_BUILD_NUMBER} for the repository ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME} has failed.
+        Repository: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
+        Branch: ${DRONE_COMMIT_BRANCH}
+        Commit Hash: ${DRONE_COMMIT}
+        Build Number: ${DRONE_BUILD_NUMBER}",
+        "html": "Unfortunately, the build #${DRONE_BUILD_NUMBER} for the repository ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME} has failed.
+        Repository: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
+        Branch: ${DRONE_COMMIT_BRANCH}
+        Commit Hash: ${DRONE_COMMIT}
+        Build Number: ${DRONE_BUILD_NUMBER}"
     }'
   when:
     status:
