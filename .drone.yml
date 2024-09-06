@@ -19,7 +19,6 @@ steps:
     EMAIL_CREDENTIALS:
       from_secret: EMAIL_CREDENTIALS
   commands:
-  - cd ./non-existent
   - docker stop apex-frontend-dev || true && docker rm apex-frontend-dev || true && docker stop apex-backend-dev || true && docker rm apex-backend-dev || true
   - cd ./apex-airline-system/frontend
   - docker build --no-cache --build-arg MONGODB_URI=$MONGODB_URI --build-arg JWT_SECRET=$JWT_SECRET --build-arg DB_NAME=$DB_NAME -t apex-frontend .
@@ -85,6 +84,33 @@ steps:
   - docker build --no-cache --build-arg MONGODB_URI=$MONGODB_URI --build-arg JWT_SECRET=$JWT_SECRET --build-arg DB_NAME=$DB_NAME -t apex-frontend .
   - docker run -d --name apex-frontend-uat -p 3003:3000 apex-frontend
   - docker run -d --name apex-backend-uat -p 3004:8080 apex-backend
+
+- name: failure-email
+  environment:
+    API_TOKEN:
+      from_secret: API_TOKEN
+  commands:
+  - |
+    curl -X POST https://api.mailersend.com/v1/email \
+    -H 'Content-Type: application/json' \
+    -H 'X-Requested-With: XMLHttpRequest' \
+    -H 'Authorization: Bearer mlsn.846ef81ec938b22022c91b1636088159527f1ff5caa368c2590b623c32a8bd71' \
+    -d '{
+        "from": {
+            "email": "MS_T1HVro@trial-z3m5jgrp9eo4dpyo.mlsender.net"
+        },
+        "to": [
+            {
+                "email": "mamarroquina@unis.edu.gt"
+            }
+        ],
+        "subject": "Build Failure in ${DRONE_REPO_NAME} (Build #${DRONE_BUILD_NUMBER})",
+        "text": "Unfortunately, the build #${DRONE_BUILD_NUMBER} for the repository ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME} has failed. Repository: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}. Branch: ${DRONE_COMMIT_BRANCH}. Commit Hash: ${DRONE_COMMIT}. Build Number: ${DRONE_BUILD_NUMBER}",
+        "html": "Unfortunately, the build #${DRONE_BUILD_NUMBER} for the repository ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME} has failed. Repository: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}. Branch: ${DRONE_COMMIT_BRANCH}. Commit Hash: ${DRONE_COMMIT}. Build Number: ${DRONE_BUILD_NUMBER}"
+    }'
+  when:
+    status:
+    - failure
 
 trigger:
   branch:
