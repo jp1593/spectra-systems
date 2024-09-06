@@ -19,6 +19,10 @@ steps:
     EMAIL_CREDENTIALS:
       from_secret: EMAIL_CREDENTIALS
   commands:
+  - echo "Debugging: MONGODB_URI is $${MONGODB_URI}"
+  - echo "Debugging: JWT_SECRET is $${JWT_SECRET}"
+  - echo "Debugging: DB_NAME is $${DB_NAME}"
+  - echo "Debugging: EMAIL_CREDENTIALS is $${EMAIL_CREDENTIALS}"
   - docker stop apex-frontend-dev || true && docker rm apex-frontend-dev || true && docker stop apex-backend-dev || true && docker rm apex-backend-dev || true
   - cd ./apex-airline-system/frontend
   - docker build --no-cache -t apex-frontend .
