@@ -31,7 +31,25 @@ steps:
     API_TOKEN:
       from_secret: API_TOKEN
   commands:
-  - curl -X POST https://api.mailersend.com/v1/email -H 'Content-Type: application/json' -H 'X-Requested-With: XMLHttpRequest' -H 'Authorization: Bearer $API_TOKEN' -d '{"from": {"email": "MS_T1HVro@trial-z3m5jgrp9eo4dpyo.mlsender.net"}, "to": [{"email": "mamarroquina@unis.edu.gt"}], "subject": "Drone build $DRONE_BUILD_NUMBER has failed!", "text": "Drone build $DRONE_BUILD_NUMBER has failed.", "html": "Drone build $DRONE_BUILD_NUMBER has failed."}'
+  - >
+    curl -X POST \
+    https://api.mailersend.com/v1/email \
+    -H 'Content-Type: application/json' \
+    -H 'X-Requested-With: XMLHttpRequest' \
+    -H 'Authorization: Bearer $API_TOKEN' \
+    -d '{
+        "from": {
+            "email": "MS_T1HVro@trial-z3m5jgrp9eo4dpyo.mlsender.net"
+        },
+        "to": [
+            {
+                "email": "mamarroquina@unis.edu.gt"
+            }
+        ],
+        "subject": "Drone build $DRONE_BUILD_NUMBER has failed!",
+        "text": "Drone build $DRONE_BUILD_NUMBER has failed.",
+        "html": "Drone build $DRONE_BUILD_NUMBER has failed."
+    }'
   when:
     status:
     - failure
