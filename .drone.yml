@@ -1,0 +1,32 @@
+---
+kind: pipeline
+type: exec
+name: dev
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: dev-containers
+  environment:
+    MONGODB_URI:
+      from_secret: MONGODB_URI
+    JWT_SECRET:
+      from_secret: JWT_SECRET
+    DB_NAME:
+      from_secret: DB_NAME
+    EMAIL_CREDENTIALS:
+      from_secret: EMAIL_CREDENTIALS
+  commands:
+  - docker stop apex-frontend-dev || true && docker rm apex-frontend-dev || true && docker stop apex-backend-dev || true && docker rm apex-backend-dev || true
+  - cd ./apex-airline-system/frontend
+  - docker build --no-cache -t apex-frontend .
+  - docker run -d --name apex-frontend-dev -p 3001:3000 apex-frontend
+  - docker run -d --name apex-backend-dev -p 3002:8080 apex-backend
+
+trigger:
+  branch:
+  - dev
+  event:
+  - push
