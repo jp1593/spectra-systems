@@ -19,14 +19,58 @@ steps:
     EMAIL_CREDENTIALS:
       from_secret: EMAIL_CREDENTIALS
   commands:
+  - cd ./non-existent
   - docker stop apex-frontend-dev || true && docker rm apex-frontend-dev || true && docker stop apex-backend-dev || true && docker rm apex-backend-dev || true
   - cd ./apex-airline-system/frontend
   - docker build --no-cache --build-arg MONGODB_URI=$MONGODB_URI --build-arg JWT_SECRET=$JWT_SECRET --build-arg DB_NAME=$DB_NAME -t apex-frontend .
   - docker run -d --name apex-frontend-dev -p 3001:3000 apex-frontend
   - docker run -d --name apex-backend-dev -p 3002:8080 apex-backend
 
+- name: failure-email
+  environment:
+    API_TOKEN:
+      from_secret: API_TOKEN
+  commands:
+  - curl -X POST https://api.mailersend.com/v1/email -H 'Content-Type: application/json' -H 'X-Requested-With: XMLHttpRequest' -H 'Authorization: Bearer $API_TOKEN' -d '{"from": {"email": "MS_T1HVro@trial-z3m5jgrp9eo4dpyo.mlsender.net"}, "to": [{"email": "mamarroquina@unis.edu.gt"}], "subject": "Drone build $DRONE_BUILD_NUMBER has failed!", "text": "Drone build $DRONE_BUILD_NUMBER has failed.", "html": "Drone build $DRONE_BUILD_NUMBER has failed."}'
+  when:
+    status:
+    - failure
+
 trigger:
   branch:
   - dev
+  event:
+  - push
+
+---
+kind: pipeline
+type: exec
+name: uat
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: uat-containers
+  environment:
+    MONGODB_URI:
+      from_secret: MONGODB_URI
+    JWT_SECRET:
+      from_secret: JWT_SECRET
+    DB_NAME:
+      from_secret: DB_NAME
+    EMAIL_CREDENTIALS:
+      from_secret: EMAIL_CREDENTIALS
+  commands:
+  - docker stop apex-frontend-uat || true && docker rm apex-frontend-uat || true && docker stop apex-backend-uat || true && docker rm apex-backend-uat || true
+  - cd ./apex-airline-system/frontend
+  - docker build --no-cache --build-arg MONGODB_URI=$MONGODB_URI --build-arg JWT_SECRET=$JWT_SECRET --build-arg DB_NAME=$DB_NAME -t apex-frontend .
+  - docker run -d --name apex-frontend-uat -p 3003:3000 apex-frontend
+  - docker run -d --name apex-backend-uat -p 3004:8080 apex-backend
+
+trigger:
+  branch:
+  - uat
   event:
   - push
