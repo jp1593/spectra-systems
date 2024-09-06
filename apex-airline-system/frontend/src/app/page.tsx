@@ -25,9 +25,9 @@ export default async function Home() {
           className="object-cover -z-10"
           priority
         />
-        {/* <Suspense> */}
+        <Suspense>
           <SearchBar locations={cities} />
-        {/* </Suspense> */}
+        </Suspense>
       </section>
       <Section title="Featured Hotel">
         {featuredHotel && (
