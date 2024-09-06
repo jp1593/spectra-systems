@@ -19,11 +19,7 @@ steps:
     EMAIL_CREDENTIALS:
       from_secret: EMAIL_CREDENTIALS
   commands:
-  - docker stop apex-frontend-dev || true && docker rm apex-frontend-dev || true && docker stop apex-backend-dev || true && docker rm apex-backend-dev || true
-  - cd ./apex-airline-system/frontend
-  - docker build --no-cache -t apex-frontend .
-  - docker run -d --name apex-frontend-dev -p 3001:3000 apex-frontend
-  - docker run -d --name apex-backend-dev -p 3002:8080 apex-backend
+  - echo $MONGODB_URI
 
 trigger:
   branch:
