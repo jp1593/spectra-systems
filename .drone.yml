@@ -19,10 +19,6 @@ steps:
     EMAIL_CREDENTIALS:
       from_secret: EMAIL_CREDENTIALS
   commands:
-  - echo $MONGODB_URI
-  - echo $JWT_SECRET
-  - echo $DB_NAME
-  - echo $EMAIL_CREDENTIALS
   - docker stop apex-frontend-dev || true && docker rm apex-frontend-dev || true && docker stop apex-backend-dev || true && docker rm apex-backend-dev || true
   - cd ./apex-airline-system/frontend
   - docker build --no-cache --build-arg MONGODB_URI=$MONGODB_URI --build-arg JWT_SECRET=$JWT_SECRET --build-arg DB_NAME=$DB_NAME -t apex-frontend .
