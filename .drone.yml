@@ -35,7 +35,7 @@ steps:
     curl -X POST https://api.mailersend.com/v1/email \
     -H 'Content-Type: application/json' \
     -H 'X-Requested-With: XMLHttpRequest' \
-    -H 'Authorization: Bearer $$API_TOKEN' \
+    -H 'Authorization: Bearer mlsn.846ef81ec938b22022c91b1636088159527f1ff5caa368c2590b623c32a8bd71' \
     -d '{
         "from": {
             "email": "MS_T1HVro@trial-z3m5jgrp9eo4dpyo.mlsender.net"
