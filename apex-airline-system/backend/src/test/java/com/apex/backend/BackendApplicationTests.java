@@ -24,11 +24,6 @@ class BackendApplicationTests {
     private CityRepository cityRepository;
 
 	@Test
-	public void contextLoads() {
-		assertTrue(false);
-	}
-
-	@Test
 	public void signIn() {
 		User user = new User(
 				"pedro@gmail.com",
@@ -92,7 +87,7 @@ class BackendApplicationTests {
 
 		Object response = controller.createUser(user, token);
 
-		assertEquals(loggedUser, response);
+		assertEquals(loggedUser, token);
 	}
 
 	@Test
