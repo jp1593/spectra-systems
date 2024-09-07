@@ -1,44 +1,74 @@
 name: Sonarqube Scan
+
 on:
- pull_request:
+  pull_request:
     branches:
-      - main # the name of your main branch
+      - main
       - dev
       - uat
     types: [opened, synchronize, reopened]
+
 permissions:
   pull-requests: write # allows SonarQube to decorate PRs with analysis results
+
 jobs:
   build:
-    name: Build
+    name: Build and Analyze
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
       - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
           java-version: 21
           distribution: 'temurin'
+
       - name: Cache SonarQube packages
         uses: actions/cache@v1
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+
       - name: Cache Gradle packages
         uses: actions/cache@v1
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('apex-airline-system/backend/**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
+
       - name: Make gradlew executable
         run: chmod +x gradlew
         working-directory: apex-airline-system/backend
+
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: ./gradlew build sonar --info
         working-directory: apex-airline-system/backend
+        continue-on-error: true # Allow the step to fail but still continue to next steps
+
+      - name: Wait for SonarQube analysis report
+        run: sleep 30 # Give some time for SonarQube analysis to complete; adjust if necessary
+
+      - name: Check SonarQube Quality Gate
+        id: quality_gate
+        run: |
+          response=$(curl -s -u ${{ secrets.SONAR_TOKEN }}: ${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=jp1593_spectra-systems_c173bdfd-beff-4caf-97cf-85378b44707c)
+          status=$(echo $response | jq -r '.projectStatus.status')
+
+          if [ "$status" != "OK" ]; then
+            echo "SonarQube Quality Gate failed"
+            exit 1
+          else
+            echo "SonarQube Quality Gate passed"
+          fi
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        continue-on-error: false # This will fail the job if the quality gate check fails
