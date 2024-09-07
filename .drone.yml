@@ -8,6 +8,11 @@ platform:
   arch: amd64
 
 steps:
+- name: tests
+  commands:
+  - cd ./apex-airline-system/backend
+  - ./gradlew test
+
 - name: dev-containers
   environment:
     MONGODB_URI:
@@ -68,6 +73,11 @@ platform:
   arch: amd64
 
 steps:
+- name: tests
+  commands:
+  - cd ./apex-airline-system/backend
+  - ./gradlew test
+
 - name: uat-containers
   environment:
     MONGODB_URI:
