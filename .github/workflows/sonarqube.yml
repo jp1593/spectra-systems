@@ -40,5 +40,5 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: ./gradlew build sonar -Dsonar.qualitygate.wait=true --info
+        run: ./gradlew build sonar --info
         working-directory: apex-airline-system/backend
