@@ -87,7 +87,7 @@ class BackendApplicationTests {
 
 		Object response = controller.createUser(user, token);
 
-		assertEquals(loggedUser, token);
+		assertEquals(loggedUser, response);
 	}
 
 	@Test
