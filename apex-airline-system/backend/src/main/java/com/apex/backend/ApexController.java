@@ -264,6 +264,7 @@ public class ApexController {
     @GetMapping("/get-user/{id}")
     public Object getUser(@PathVariable Long id) {
         Connection conn = new OracleConnector(oracleUser).getConnection();
+        String testing = "error"; 
 
         try {
             PreparedStatement query = conn
@@ -271,6 +272,11 @@ public class ApexController {
             ResultSet result = query.executeQuery();
 
             record User(String name, String email) {
+            }
+
+            if(true){
+             testing = "testeo";
+             return testing; 
             }
 
             if (result.next()) {
