@@ -34,3 +34,16 @@ pipeline:
                     command: hello world
         delegateSelectors:
           - docker-delegate
+  notificationRules:
+    - name: Failure-Email
+      identifier: FailureEmail
+      pipelineEvents:
+        - type: PipelineFailed
+      notificationMethod:
+        type: Email
+        spec:
+          userGroups: []
+          recipients:
+            - jpestrada@unis.edu.gt
+            - juanpablo08082002@hotmail.com
+      enabled: true
