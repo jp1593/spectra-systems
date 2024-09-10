@@ -31,7 +31,7 @@ pipeline:
                   identifier: Run_1
                   spec:
                     shell: Sh
-                    command: hello world
+                    command: echo "hello world"
         delegateSelectors:
           - docker-delegate
   notificationRules:
