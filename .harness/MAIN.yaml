@@ -11,8 +11,8 @@ pipeline:
         build: <+input>
   stages:
     - stage:
-        name: UNIT TESTING
-        identifier: UNIT_TESTING
+        name: Build and Test
+        identifier: Build_and_Test
         description: ""
         type: CI
         spec:
@@ -44,49 +44,25 @@ pipeline:
                       cd apex-airline-system/backend
                       ./gradlew test
                   description: Run Gradle tests
+              - step:
+                  type: Run
+                  name: Run SonarQube Analysis
+                  identifier: Run_SonarQube_Analysis
+                  spec:
+                    shell: Sh
+                    command: |-
+                      cd apex-airline-system/backend
+                      ./gradlew sonar \
+                        -Dsonar.projectKey=jp1593_spectra-systems_c173bdfd-beff-4caf-97cf-85378b44707c \
+                        -Dsonar.projectName='spectra-systems' \
+                        -Dsonar.host.url=https://vbbxhpxt-9000.use.devtunnels.ms \
+                        -Dsonar.token=sqp_cbae4db0807d59ee0ec9c1fbd37921302565b15b
+                  description: Run SonarQube analysis
           caching:
             enabled: false
             paths: []
         delegateSelectors:
           - docker-delegate
-    - stage:
-        name: SonarQube
-        identifier: SonarQube
-        description: ""
-        type: CI
-        spec:
-          cloneCodebase: true
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Cloud
-            spec: {}
-          execution:
-            steps:
-              - step:
-                  type: Action
-                  name: Set up Java
-                  identifier: setup_java
-                  spec:
-                    uses: actions/setup-java@v3
-                    with:
-                      distribution: temurin
-                      java-version: "21"
-              - step:
-                  type: Run
-                  name: Run SonarQube Analysis
-                  identifier: Run_Sonar
-                  spec:
-                    shellScript:
-                      script: |
-                        #!/bin/bash
-                        cd /apex-airline-system/backend
-                        ./gradlew sonar \
-                          -Dsonar.projectKey=jp1593_spectra-systems_c173bdfd-beff-4caf-97cf-85378b44707c \
-                          -Dsonar.projectName='spectra-systems' \
-                          -Dsonar.host.url=https://vbbxhpxt-9000.use.devtunnels.ms \
-                          -Dsonar.token=sqp_cbae4db0807d59ee0ec9c1fbd37921302565b15b
   notificationRules:
     - name: Failure-Email
       identifier: FailureEmail
