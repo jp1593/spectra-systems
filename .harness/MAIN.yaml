@@ -33,6 +33,7 @@ pipeline:
                     shell: Sh
                     command: |-
                       cd apex-airline-system/backend
+                      pwd
                       ./gradlew test
                   description: Backend_Test
         delegateSelectors:
