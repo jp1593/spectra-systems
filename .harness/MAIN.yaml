@@ -11,8 +11,8 @@ pipeline:
         build: <+input>
   stages:
     - stage:
-        name: Build and Test
-        identifier: Build_and_Test
+        name: UNIT TESTING
+        identifier: UNIT_TESTING
         description: ""
         type: CI
         spec:
@@ -22,8 +22,7 @@ pipeline:
             arch: Amd64
           runtime:
             type: Cloud
-            spec:
-              dockerImage: temurin:21-jdk
+            spec: {}
           execution:
             steps:
               - step:
