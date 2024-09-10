@@ -11,8 +11,8 @@ pipeline:
         build: <+input>
   stages:
     - stage:
-        name: UNIT TEST
-        identifier: Test
+        name: Build and Test
+        identifier: Build_and_Test
         description: ""
         type: CI
         spec:
@@ -28,17 +28,32 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  name: Unit testing
-                  identifier: Run_1
+                  name: Checkout code
+                  identifier: Checkout_code
                   spec:
                     shell: Sh
                     command: |-
+                      # Check out code (Git is typically handled automatically in CI pipelines)
+                      echo "Code checked out"
+              - step:
+                  type: Run
+                  name: Set up JDK 21
+                  identifier: Setup_JDK_21
+                  spec:
+                    shell: Sh
+                    command: |-
+                      # Ensure Java 21 is available
                       java -version
+              - step:
+                  type: Run
+                  name: Build with Gradle
+                  identifier: Build_with_Gradle
+                  spec:
+                    shell: Sh
+                    command: |-
                       cd apex-airline-system/backend
-                      pwd
-                      ls -la
                       ./gradlew test
-                  description: Backend_Test
+                  description: Run Gradle tests
           caching:
             enabled: false
             paths: []
