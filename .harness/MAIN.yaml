@@ -33,6 +33,7 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
+                      java -version
                       cd apex-airline-system/backend
                       pwd
                       ls -la
