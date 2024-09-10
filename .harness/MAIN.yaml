@@ -33,7 +33,7 @@ pipeline:
                     shell: Sh
                     command: |-
                       cd apex-airline-system/backend
-                        pdw
+                        pwd
                         ./gradlew test
                   description: Backend_Test
           caching:
