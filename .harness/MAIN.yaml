@@ -27,24 +27,6 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: Run
-                  name: Checkout code
-                  identifier: Checkout_code
-                  spec:
-                    shell: Sh
-                    command: |-
-                      # Check out code (Git is typically handled automatically in CI pipelines)
-                      echo "Code checked out"
-              - step:
-                  type: Run
-                  name: Set up JDK 21
-                  identifier: Setup_JDK_21
-                  spec:
-                    shell: Sh
-                    command: |-
-                      # Ensure Java 21 is available
-                      java -version
-              - step:
                   type: Action
                   name: Set up Java
                   identifier: setup_java
