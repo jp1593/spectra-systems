@@ -53,7 +53,7 @@ pipeline:
                     env:
                       SONAR_TOKEN: sqp_cbae4db0807d59ee0ec9c1fbd37921302565b15b
                       SONAR_HOST_URL: https://vbbxhpxt-9000.use.devtunnels.ms
-                    run: |-
+                    command: |-
                       cd apex-airline-system/backend
                       pwd
                       ./gradlew build sonar --info
