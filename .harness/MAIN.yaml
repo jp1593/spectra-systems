@@ -45,6 +45,15 @@ pipeline:
                       # Ensure Java 21 is available
                       java -version
               - step:
+                  type: Action
+                  name: Set up Java
+                  identifier: setup_java
+                  spec:
+                    uses: actions/setup-java@v3
+                    with:
+                      distribution: temurin
+                      java-version: "21"
+              - step:
                   type: Run
                   name: Build with Gradle
                   identifier: Build_with_Gradle
