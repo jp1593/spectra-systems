@@ -65,6 +65,15 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: Action
+                  name: Set up Java
+                  identifier: setup_java
+                  spec:
+                    uses: actions/setup-java@v3
+                    with:
+                      distribution: temurin
+                      java-version: "21"
+              - step:
                   type: Run
                   name: Scan Execution
                   identifier: Scan_Execution
