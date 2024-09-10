@@ -46,15 +46,6 @@ pipeline:
                   description: Run Gradle tests
               - step:
                   type: Run
-                  name: Make gradlew Executable
-                  identifier: make_gradlew_executable
-                  spec:
-                    shell: Sh
-                    command: chmod +x gradlew
-                    workingDirectory: apex-airline-system/backend
-                  description: Make gradlew executable
-              - step:
-                  type: Run
                   name: Build and Analyze
                   identifier: build_and_analyze
                   spec:
