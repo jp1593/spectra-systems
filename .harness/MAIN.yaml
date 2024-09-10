@@ -32,8 +32,9 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
+                      export JAVA_HOME=/path/to/java-17
+                      export PATH=$JAVA_HOME/bin:$PATH
                       cd apex-airline-system/backend
-                      pwd
                       ./gradlew test
                   description: Backend_Test
         delegateSelectors:
