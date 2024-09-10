@@ -22,7 +22,8 @@ pipeline:
             arch: Amd64
           runtime:
             type: Cloud
-            spec: {}
+            spec:
+              dockerImage: temurin:21-jdk
           execution:
             steps:
               - step:
@@ -33,9 +34,9 @@ pipeline:
                     shell: Sh
                     command: |-
                       cd apex-airline-system/backend
-                        pwd
-                        ls -la
-                        ./gradlew test
+                      pwd
+                      ls -la
+                      ./gradlew test
                   description: Backend_Test
           caching:
             enabled: false
