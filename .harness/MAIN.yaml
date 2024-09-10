@@ -75,14 +75,18 @@ pipeline:
                       java-version: "21"
               - step:
                   type: Run
-                  name: Sonar
-                  identifier: Sonar
+                  name: Run SonarQube Analysis
+                  identifier: Run_Sonar
                   spec:
-                    env:
-                      SONAR_TOKEN: sqp_cbae4db0807d59ee0ec9c1fbd37921302565b15b
-                      SONAR_HOST_URL: https://vbbxhpxt-9000.use.devtunnels.ms
-                    run: ./gradlew build sonar --info
-                    working-directory: apex-airline-system/backend
+                    shellScript:
+                      script: |
+                        #!/bin/bash
+                        cd /apex-airline-system/backend
+                        ./gradlew sonar \
+                          -Dsonar.projectKey=jp1593_spectra-systems_c173bdfd-beff-4caf-97cf-85378b44707c \
+                          -Dsonar.projectName='spectra-systems' \
+                          -Dsonar.host.url=https://vbbxhpxt-9000.use.devtunnels.ms \
+                          -Dsonar.token=sqp_cbae4db0807d59ee0ec9c1fbd37921302565b15b
   notificationRules:
     - name: Failure-Email
       identifier: FailureEmail
