@@ -46,18 +46,25 @@ pipeline:
                   description: Run Gradle tests
               - step:
                   type: Run
-                  name: Run SonarQube Analysis
-                  identifier: Run_SonarQube_Analysis
+                  name: Make gradlew Executable
+                  identifier: make_gradlew_executable
                   spec:
                     shell: Sh
-                    command: |-
-                      cd apex-airline-system/backend
-                      ./gradlew sonar \
-                        -Dsonar.projectKey=jp1593_spectra-systems_c173bdfd-beff-4caf-97cf-85378b44707c \
-                        -Dsonar.projectName='spectra-systems' \
-                        -Dsonar.host.url=https://vbbxhpxt-9000.use.devtunnels.ms \
-                        -Dsonar.token=sqp_cbae4db0807d59ee0ec9c1fbd37921302565b15b
-                  description: Run SonarQube analysis
+                    command: chmod +x gradlew
+                    workingDirectory: apex-airline-system/backend
+                  description: Make gradlew executable
+              - step:
+                  type: Run
+                  name: Build and Analyze
+                  identifier: build_and_analyze
+                  spec:
+                    shell: Sh
+                    command: ./gradlew build sonar --info
+                    workingDirectory: apex-airline-system/backend
+                    env:
+                      SONAR_TOKEN: sqp_cbae4db0807d59ee0ec9c1fbd37921302565b15b
+                      SONAR_HOST_URL: https://vbbxhpxt-9000.use.devtunnels.ms
+                  description: Build and analyze with SonarQube
           caching:
             enabled: false
             paths: []
