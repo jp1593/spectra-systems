@@ -31,10 +31,8 @@ sonar {
     properties {
         property 'sonar.projectKey', 'jp1593_spectra-systems_c173bdfd-beff-4caf-97cf-85378b44707c'
         property 'sonar.projectName', 'spectra-systems'
-//         property 'sonar.host.url', 'http://localhost:9000' 
-//         property 'sonar.token', 'sqp_081ee3c00b1d9d056b78913997f9ad907d540f36' 
-//         property 'sonar.java.coveragePlugin', 'jacoco'
-//         property "sonar.coverage.jacoco.xmlReportPath", "${buildDir}/reports/jacoco.xml"
+        property 'sonar.host.url', 'https://vbbxhpxt-9000.use.devtunnels.ms' 
+	property 'sonar.token', 'sqp_cbae4db0807d59ee0ec9c1fbd37921302565b15b' 
     }
 }
 
