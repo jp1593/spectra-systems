@@ -27,11 +27,14 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  name: Run_1
+                  name: Unit testing
                   identifier: Run_1
                   spec:
                     shell: Sh
-                    command: echo "hello world"
+                    command: |-
+                      cd apex-airline-system/backend
+                      ./gradlew test
+                  description: Backend_Test
         delegateSelectors:
           - docker-delegate
   notificationRules:
