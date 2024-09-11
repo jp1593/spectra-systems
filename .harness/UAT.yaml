@@ -63,7 +63,7 @@ pipeline:
                     shell: Sh
                     command: |-
                       cd apex-airline-system/backend
-                      docker build -t avianca-backend .
+                      docker build -t aviancauat-backend .
                   description: Build Docker image
               - step:
                   type: Run
