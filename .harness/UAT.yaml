@@ -1,0 +1,34 @@
+pipeline:
+  name: UAT
+  identifier: UAT
+  projectIdentifier: UAT
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: UAT
+        build: <+input>
+  stages:
+    - stage:
+        name: TEST
+        identifier: TEST
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: echo "Hello world"
