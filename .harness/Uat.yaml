@@ -1,0 +1,14 @@
+inputSet:
+  name: Uat
+  identifier: Uat
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: UAT
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: uat
