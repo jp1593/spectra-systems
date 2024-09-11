@@ -7,9 +7,9 @@ pipeline:
   properties:
     ci:
       codebase:
-        brach: uat
         connectorRef: Main_GITHUB
         build: <+input>
+        branch: uat
   stages:
     - stage:
         name: Build and Test
