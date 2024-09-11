@@ -45,34 +45,6 @@ pipeline:
                       ./gradlew test
                   description: Run Gradle tests
               - step:
-                  type: Action
-                  name: Cache SonarQube packages
-                  identifier: cache_sonar
-                  spec:
-                    uses: actions/cache@v1
-                    with:
-                      path: ~/.sonar/cache
-                      key: ${{ runner.os }}-sonar
-                      restore-keys: ${{ runner.os }}-sonar
-              - step:
-                  type: Action
-                  name: Cache Gradle packages
-                  identifier: cache_gradle
-                  spec:
-                    uses: actions/cache@v1
-                    with:
-                      path: ~/.gradle/caches
-                      key: ${{ runner.os }}-gradle-${{ hashFiles('apex-airline-system/backend/**/*.gradle') }}
-                      restore-keys: ${{ runner.os }}-gradle
-              - step:
-                  type: Run
-                  name: Make gradlew executable
-                  identifier: make_gradlew_executable
-                  spec:
-                    shell: Sh
-                    command: chmod +x gradlew
-                    workingDirectory: apex-airline-system/backend
-              - step:
                   type: Run
                   name: Build and Analyze
                   identifier: build_and_analyze
