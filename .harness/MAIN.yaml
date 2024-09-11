@@ -57,9 +57,7 @@ pipeline:
                   description: Build and analyze with SonarQube
           caching:
             enabled: true
-            paths:
-              - ~/.sonar/cache
-              - ~/.gradle/caches
+            paths: []
         delegateSelectors:
           - docker-delegate
   notificationRules:
