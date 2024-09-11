@@ -62,8 +62,8 @@ pipeline:
                     shell: Sh
                     command: |-
                       echo "dckr_pat_GVfaEWturA7At5DWn-0GbVKKiUg" | docker login -u "jpestrada" --password-stdin                     
-                      docker tag avianca-backend jpestrada/harnessimages:latest
-                      docker push jpestrada/harnessimages:latest
+                      docker tag avianca-backend jpestrada/harnessimages:avianca-backend
+                      docker push jpestrada/harnessimages:avianca-backend
                   description: Push Docker image to Docker Hub
           caching:
             enabled: false
