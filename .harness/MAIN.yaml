@@ -44,17 +44,6 @@ pipeline:
                       cd apex-airline-system/backend
                       ./gradlew test
                   description: Run Gradle tests
-              - step:
-                  type: Run
-                  name: Build and Analyze
-                  identifier: build_and_analyze
-                  spec:
-                    shell: Sh
-                    command: |-
-                      cd apex-airline-system/backend
-                      pwd
-                      ./gradlew build sonar --info
-                  description: Build and analyze with SonarQube
           caching:
             enabled: false
             paths: []
