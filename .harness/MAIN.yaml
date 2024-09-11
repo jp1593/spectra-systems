@@ -61,17 +61,10 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
-                      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-                      docker tag avianca-backend jpestrada/harnessimages:${TAG_NAME}
-                      docker push jpestrada/harnessimages:${TAG_NAME}
+                      echo "juan1593" | docker login -u "jpestrada" --password-stdin                     
+                      docker tag avianca-backend jpestrada/harnessimages:latest
+                      docker push jpestrada/harnessimages:latest
                   description: Push Docker image to Docker Hub
-                  env:
-                    - name: DOCKER_USERNAME
-                      value: jpestrada
-                    - name: DOCKER_PASSWORD
-                      value: juan1593
-                    - name: TAG_NAME
-                      value: latest
           caching:
             enabled: false
             paths: []
