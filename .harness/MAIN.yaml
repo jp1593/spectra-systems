@@ -56,7 +56,7 @@ pipeline:
                       ./gradlew build sonar --info
                   description: Build and analyze with SonarQube
           caching:
-            enabled: true
+            enabled: false
             paths: []
         delegateSelectors:
           - docker-delegate
