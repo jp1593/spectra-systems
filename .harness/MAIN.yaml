@@ -67,7 +67,7 @@ pipeline:
                   description: Push Docker image to Docker Hub
                   env:
                     - name: DOCKER_USERNAME
-                      value: jpestrada@unis.edu.gt
+                      value: jpestrada
                     - name: DOCKER_PASSWORD
                       value: juan1593
                     - name: TAG_NAME
