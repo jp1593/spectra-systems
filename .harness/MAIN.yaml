@@ -65,6 +65,27 @@ pipeline:
                       docker tag avianca-backend jpestrada/harnessimages:avianca-backend
                       docker push jpestrada/harnessimages:avianca-backend
                   description: Push Docker image to Docker Hub
+              - step:
+                  type: Run
+                  name: FRONTEND Docker Image
+                  identifier: Build_Docker_Image
+                  spec:
+                    shell: Sh
+                    command: |-
+                      cd apex-airline-system/frontend
+                      docker build -t avianca-frontend .
+                  description: Build Docker image
+              - step:
+                  type: Run
+                  name: Push Docker Image
+                  identifier: Push_Docker_Image
+                  spec:
+                    shell: Sh
+                    command: |-
+                      echo "dckr_pat_GVfaEWturA7At5DWn-0GbVKKiUg" | docker login -u "jpestrada" --password-stdin                     
+                      docker tag avianca-frontend jpestrada/harnessimages:avianca-frontend
+                      docker push jpestrada/harnessimages:avianca-frontend
+                  description: Push Docker image to Docker Hub
           caching:
             enabled: false
             paths: []
