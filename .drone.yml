@@ -47,6 +47,9 @@ steps:
         "to": [
             {
                 "email": "mamarroquina@unis.edu.gt"
+            },
+            {
+                "email": "jflores@unis.edu.gt"
             }
         ],
         "subject": "Build Failure in ${DRONE_REPO_NAME} (Build #${DRONE_BUILD_NUMBER})",
@@ -112,6 +115,9 @@ steps:
         "to": [
             {
                 "email": "mamarroquina@unis.edu.gt"
+            },
+            {
+                "email": "jflores@unis.edu.gt"
             }
         ],
         "subject": "Build Failure in ${DRONE_REPO_NAME} (Build #${DRONE_BUILD_NUMBER})",
@@ -177,6 +183,9 @@ steps:
         "to": [
             {
                 "email": "mamarroquina@unis.edu.gt"
+            },
+            {
+                "email": "jflores@unis.edu.gt"
             }
         ],
         "subject": "Build Failure in ${DRONE_REPO_NAME} (Build #${DRONE_BUILD_NUMBER})",

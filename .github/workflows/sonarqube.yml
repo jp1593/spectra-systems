@@ -61,6 +61,9 @@ jobs:
               "to": [
                   {
                       "email": "mamarroquina@unis.edu.gt"
+                  },
+                  {
+                      "email": "jflores@unis.edu.gt"
                   }
               ],
               "subject": "SonarQube Failure",
