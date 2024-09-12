@@ -307,9 +307,9 @@ public class ApexController {
     public Object getUsers() {
         Connection conn = new OracleConnector(oracleUser).getConnection();
 
-        // if (true) {
-		// 	int num = 1;
-		// }
+        if (true) {
+			int num = 1;
+		}
 
         List<LoggedUser> users = new ArrayList<LoggedUser>();
 
