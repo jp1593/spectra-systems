@@ -264,16 +264,10 @@ public class ApexController {
     @GetMapping("/get-user/{id}")
     public Object getUser(@PathVariable Long id) {
         Connection conn = new OracleConnector(oracleUser).getConnection();
-        String test = "testing"; 
         try {
             PreparedStatement query = conn
                     .prepareStatement(String.format("SELECT * FROM users WHERE user_id = %d", id));
             ResultSet result = query.executeQuery();
-
-            if (true) {
-             test = "testing2"; 
-             return test; 
-            }
 
             record User(String name, String email) {
             }
