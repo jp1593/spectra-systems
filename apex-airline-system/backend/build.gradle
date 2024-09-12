@@ -27,8 +27,12 @@ test {
 //     }
 // }
 
-sonar { - 
+sonar { 
     properties {
+	property 'sonar.projectKey', 'jp1593_spectra-systems_c173bdfd-beff-4caf-97cf-85378b44707c'
+        property 'sonar.projectName', 'spectra-systems'
+        property 'sonar.host.url', 'https://vbbxhpxt-9000.use.devtunnels.ms' 
+	property 'sonar.token', 'sqp_cbae4db0807d59ee0ec9c1fbd37921302565b15b'
 
     }
 }
