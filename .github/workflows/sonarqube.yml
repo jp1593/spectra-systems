@@ -60,9 +60,6 @@ jobs:
               },
               "to": [
                   {
-                      "email": "mamarroquina@unis.edu.gt"
-                  },
-                  {
                       "email": "jflores@unis.edu.gt"
                   }
               ],
