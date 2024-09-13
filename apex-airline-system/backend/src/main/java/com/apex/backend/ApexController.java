@@ -305,7 +305,15 @@ public class ApexController {
      */
     @GetMapping("/get-users")
     public Object getUsers() {
-        Connection conn = new OracleConnector(oracleUser).getConnection();
+        Connection conn = new OracleConnector(oracleUser).getConnection
+         asdfsadf
+
+
+         sadfsa
+         dfsadf
+         :;;; 
+     sdfsdf
+      
 
         List<LoggedUser> users = new ArrayList<LoggedUser>();
 
