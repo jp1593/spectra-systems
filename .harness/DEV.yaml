@@ -113,4 +113,5 @@ pipeline:
           recipients:
             - jpestrada@unis.edu.gt
             - juanpablo08082002@hotmail.com
+            - jflores@unis.edu.gt
       enabled: true
