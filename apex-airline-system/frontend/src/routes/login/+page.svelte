@@ -29,7 +29,7 @@
     >
       <div class="flex flex-col">
         <div class="flex items-center">
-          <div class="font-bold text-xl">Log In Ciudad de los reyes - Sept 12 2024 - Magic - Master  </div>
+          <div class="font-bold text-xl">Log In Ciudad de los reyes - Sept 12 2024 - Magic - Master - KENOBI  </div>
           <Loader2
             class="shrink-0 ml-3 h-4 w-4 animate-spin {!loading && 'hidden'}"
           />
