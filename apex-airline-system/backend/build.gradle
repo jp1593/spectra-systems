@@ -24,6 +24,7 @@ jacocoTestReport {
      reports {
          xml.required = true
          //xml.destination = file("${buildDir}/reports/jacoco/coverage.xml")
+	     //
      }
  }
 
