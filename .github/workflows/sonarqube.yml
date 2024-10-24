@@ -42,11 +42,16 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: ./gradlew build jacocoTestReport sonarqube --info
         working-directory: apex-airline-system/backend
-      - name: Check SonarQube Quality Gate
+# Check the Quality Gate status.
+      - name: SonarQube Quality Gate check
+        id: sonarqube-quality-gate-check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: |
-          sleep 30 # wait for SonarQube analysis to complete
-          QUALITY_GATE=$(curl -s -u ${SONAR_TOKEN}: "${SONAR_HOST_URL}/api/qualitygates/project_status?projectKey=jp1593_spectra-systems_c173bdfd-beff-4caf-97cf-85378b44707c" | jq -r '.projectStatus.status')
-          echo "Quality Gate Status: $QUALITY_GATE"
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} #OPTIONAL
+
+      # Optionally show SonarQube Quality Gate status
+      - name: "Show SonarQube Quality Gate Status"
+        run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
+
