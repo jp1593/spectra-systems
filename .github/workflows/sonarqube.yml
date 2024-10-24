@@ -46,17 +46,18 @@ jobs:
         if: failure() 
         uses: dawidd6/action-send-mail@v3
         with:
+          server_address: smtp.gmail.com
+          server-port: 587
+          username: ${{ secrets.GMAIL_USERNAME }} # Your Gmail address
+          password: ${{ secrets.GMAIL_APP_PASSWORD }} # Your Gmail App Password
+          subject: 'Build Failure Notification'
           from: 'spectrajenkins@gmail.com' # Replace with your email address
           to: 'jpestrada@unis.edu.gt' 
-          subject: 'Build Failure Notification'
           body: |
             The build has failed. Please check the details in the GitHub Actions logs.
             Job: ${{ github.job }}
             Workflow: ${{ github.workflow }}
             Commit: ${{ github.sha }}
-          server_address: 'smtp.gmail.com'
-          server-port: 587
-          username: ${{ secrets.GMAIL_USERNAME }} # Your Gmail address
-          password: ${{ secrets.GMAIL_APP_PASSWORD }} # Your Gmail App Password
-          secure: true
+
+
 
