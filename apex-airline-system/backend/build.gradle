@@ -11,9 +11,9 @@ group = 'com.apex'
 version = '0.0.1-SNAPSHOT'
 
 
-jacoco {
-    toolVersion = "0.8.7"
-}
+//jacoco {
+ //   toolVersion = "0.8.7"
+//}
 
 test {
     useJUnitPlatform() // Or other testing framework
@@ -21,10 +21,10 @@ test {
 }
 
 jacocoTestReport {
+	//dependsOn test
      reports {
          xml.required = true
-         //xml.destination = file("${buildDir}/reports/jacoco/coverage.xml")
-	     //
+   //      xml.destination = file("${buildDir}/reports/jacoco.xml")
      }
  }
 
@@ -32,8 +32,11 @@ sonar {
     properties {
 	property 'sonar.projectKey', 'jp1593_spectra-systems_c173bdfd-beff-4caf-97cf-85378b44707c'
         property 'sonar.projectName', 'spectra-systems'
+	property 'sonar.host.url', 'https://vbbxhpxt-9000.use.devtunnels.ms/'
 	property "sonar.coverage.jacoco.xmlReportPath", "${buildDir}/reports/jacoco.xml" 
-        // property 'sonar.host.url', 'https://vbbxhpxt-9000.use.devtunnels.ms' 
+	property 'sonar.login', 'admin' 
+        property 'sonar.password', 'sonar' 
+	// property 'sonar.host.url', 'https://vbbxhpxt-9000.use.devtunnels.ms' 
 	// property 'sonar.token', 'sqp_cbae4db0807d59ee0ec9c1fbd37921302565b15b'
 
     }
