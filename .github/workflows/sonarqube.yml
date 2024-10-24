@@ -42,4 +42,20 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: ./gradlew build jacocoTestReport sonarqube --info
         working-directory: apex-airline-system/backend
+      - name: Send email notification
+        if: failure() 
+        uses: dawidd6/action-send-mail@v3
+        with:
+          to: 'jpestrada@unis.edu.gt' 
+          subject: 'Build Failure Notification'
+          body: |
+            The build has failed. Please check the details in the GitHub Actions logs.
+            Job: ${{ github.job }}
+            Workflow: ${{ github.workflow }}
+            Commit: ${{ github.sha }}
+          smtp-server: 'smtp.gmail.com'
+          smtp-port: 587
+          smtp-username: ${{ secrets.GMAIL_USERNAME }} # Your Gmail address
+          smtp-password: ${{ secrets.GMAIL_APP_PASSWORD }} # Your Gmail App Password
+          secure: true
 
