@@ -54,9 +54,9 @@ jobs:
             Job: ${{ github.job }}
             Workflow: ${{ github.workflow }}
             Commit: ${{ github.sha }}
-          smtp-server: 'smtp.gmail.com'
-          smtp-port: 587
-          smtp-username: ${{ secrets.GMAIL_USERNAME }} # Your Gmail address
-          smtp-password: ${{ secrets.GMAIL_APP_PASSWORD }} # Your Gmail App Password
+          server_address: 'smtp.gmail.com'
+          server-port: 587
+          username: ${{ secrets.GMAIL_USERNAME }} # Your Gmail address
+          password: ${{ secrets.GMAIL_APP_PASSWORD }} # Your Gmail App Password
           secure: true
 
