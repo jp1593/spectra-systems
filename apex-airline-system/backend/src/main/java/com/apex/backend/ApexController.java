@@ -63,12 +63,12 @@ import org.springframework.beans.factory.annotation.Value; // Import necesario p
  * Crea una instancia de `ApexController` el cual representara el controlado del
  * BE
  */
-public class ApexController {
+public class ApexController 
     /**
      * URL base de la API de Nexus (valor inyectado mediante `@Value`).
      */
     @Value("${agency.urls}")
-    private String agencyUrls;
+    private String agencyUrl sdg fafdsg
 
     @Value("${oracle.user}")
     private String oracleUser;
