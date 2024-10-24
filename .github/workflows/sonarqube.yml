@@ -46,6 +46,7 @@ jobs:
         if: failure() 
         uses: dawidd6/action-send-mail@v3
         with:
+          from: 'spectrajenkins@gmail.com' # Replace with your email address
           to: 'jpestrada@unis.edu.gt' 
           subject: 'Build Failure Notification'
           body: |
