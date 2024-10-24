@@ -79,10 +79,10 @@ public class ApexController {
      * @param id      Id del usuario
      * @param content Contenido dentro del mensaje de bienvenida
      */
-    public record Greeting(long id, String content) {
+    public record Greeting(long id, String content) 
     }
 
-    private static final String template = "Hello, %s!";
+    private static final String template = "Hello, %s!" f
     private final AtomicLong counter = new AtomicLong();
     private final String NEXUS_API = "http://localhost:42069/nexus/flights/";
 
