@@ -79,7 +79,7 @@ public class ApexController {
      * @param id      Id del usuario
      * @param content Contenido dentro del mensaje de bienvenida
      */
-    public record Greeting(long id, String content) {
+    public record Greeting(long id, String content) 
     }
 
     private static final String template = "Hello, %s!";
